@@ -1,94 +1,92 @@
 #include<stdio.h>
-void insert(int val,int index,int *,int l);
-void search(int val,int *,int l);
-void delete(int l,int *,int pos);
-int main()
+void main()
 {
-	int i,l,pos,value,element;
-	int a[10],*p,choice;
-	printf("Enter The Limit less than 10 :");
-	scanf("%d",&l);
-	for(i=0;i<l;i++) {
-		printf("Enter Number %d : ",i+1);
-		scanf("%d",&a[i]);
+
+int key,k,el,ch,n,x,i,a[10];
+printf("enter the no. of elements:");
+scanf("%d",&n);
+printf("enter the elements in the array:"); 
+for(i=0;i<n;i++)
+{
+	scanf("%d",&a[i]);
+}
+printf("\t\tARRAY OPERATIONS\n");
+printf("1.insertion\n2.deletion\n3.search\n");
+v:
+printf("enter your choice:");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+	printf("enter the element to be inserted:");
+	scanf("%d",&key);
+	printf("enter the position where the key to be inserted:");
+	scanf("%d",&x);
+	for(i=0;i<10;i++)
+	{ 
+	if(i==x-1)
+	{
+		int j=n;
+		while(j>=i)
+		{
+		a[j+1]=a[j];
+		j--;
 		}
-	p=a;
-
-	for(i=0;i<l;i++) {
-		printf(" %d ",*p);
-		p++;
-		}
-	printf("\n");
-	printf("Select Your Choice : \n");
-	printf(" 1. Insert \n");
-	printf(" 2. Search \n");
-        printf(" 3. delete \n");
-	scanf("%d",&choice);
-	switch(choice)
-	{
-	case 1:
-		printf("	Enter Preferred Position :");
-		scanf("%d",&pos);
-		printf("Enter The Value to insert :");
-		scanf(" %d ",&value);
-		insert(value,pos,a,l);
-		break;
-	case 2:
-		printf("Enter The Element To Search :");
-		scanf("%d",&element);
-		search(element,a,l);
-		break;
-	 case 3:printf("Enter The position To delete: ");
-         scanf("%d",&pos);
-	 delete(l,a,pos);
-	 break;
-
-	
-	default:printf("Enter A Valid Option :");
-
+	a[i]=key;
 	}
+	}
+	n++;
+	for(i=0;i<n;i++)
+	{
+	printf("%d\t",a[i]);
+	}
+printf("\n");
+break;
+case 2:
 
-}
-
-void delete(int l,int *a,int pos){
-   int i,j;
-   if(pos<=l){
-      for(i=pos-1;i<l;i++){
-         j=i+1;
-         *(a+i)=*(a+j);
-      }
-      printf("after deletion the array elements is:\n");
-      for(i=0;i<l-1;i++){
-         printf("%d\n",(*(a+i)));
-      }
-   }
-   else{
-      printf("Invalid Input");
-   }
-} 
-void insert(int val,int pos,int *a,int l)
+printf("enter the element to be deleted:");
+scanf("%d",&key);
+for(i=0;i<n;i++)
 {
-	int i;
-
-	for(i=l;i>=pos;i--)
+	if(a[i]==key)
 	{
-		a[i]=a[i-1];
+	int j=i;
+	while(j<=n)
+	{
+		a[j]=a[j+1];
+		j++;
 	}
-	a[pos-1]=val;
-
-	for(i=0;i<l+1;i++) 
-	{
-		printf(" %d ",a[i]);
 	}
 }
+n--;
+for(i=0;i<n;i++)
+	{
+	printf("%d\t",a[i]);
+	}
+printf("\n");
+break;
 
-void search(int val,int *p,int l)
+case 3:
+printf("enter the no. to be searched:");
+scanf("%d",&key);
+int flag=0;
+for(i=0;i<n;i++)
 {
-	int i;
-	for(i=0;i<l;i++) {
-	if(val==*p){
-		printf("Element found at %d /n",i+1);
-	}
-	p++;
+	if(a[i]==key)
+	{
+	flag=1;
+	printf("element found at position %d\n",i+1);
 }
 }
+if(flag==0)
+printf("element not found!!\n");
+break;
+default:printf("wrong choice!!");
+}
+char c;
+printf("do you want to continue?\n");
+scanf("%s",&c);
+if(c=='y')
+ goto v;
+}
+
